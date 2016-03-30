@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  before_filter :find_product, except: [:index, :new, :create]
+
   # GET /products
   # GET /products.json
   def index
@@ -13,8 +16,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
@@ -33,15 +34,12 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit; end
 
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(params[:product])
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -56,8 +54,6 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -72,12 +68,17 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
 
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def find_product
+    @product = Product.find(params[:id])
   end
 end
