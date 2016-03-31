@@ -40,8 +40,10 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
+    daemons (1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    eventmachine (1.2.0.1)
     execjs (2.6.0)
     hike (1.2.3)
     i18n (0.6.1)
@@ -137,6 +139,10 @@ GEM
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
+    thin (1.6.4)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (~> 1.0)
     thor (0.19.1)
     tilt (1.4.1)
     treetop (1.4.15)
@@ -173,6 +179,10 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer
+  thin
   turn
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+
+BUNDLED WITH
+   1.11.2
