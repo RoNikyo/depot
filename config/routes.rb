@@ -1,5 +1,5 @@
 Depot::Application.routes.draw do
-  get "store/index"
+  get "/store/index", to: "store/index"
 
   resources :products
 
