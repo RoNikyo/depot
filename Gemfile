@@ -27,3 +27,5 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
 end
+
+gem 'thin'
