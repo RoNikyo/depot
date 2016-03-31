@@ -1,7 +1,6 @@
 Depot::Application.routes.draw do
-  get "store/index"
-
   resources :products
+  resources :store, only: [:index]
 
   root to: 'store#index', as: 'store'
 end
