@@ -19,8 +19,12 @@
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
       </ul>
+      <p><font color=#FFF><%= Time.now.day.to_s+"."+Time.now.month.to_s+"."+Time.now.year.to_s %></font></p>
     </div>
     <div id="main">
+      <% if notice %>
+        <p id="notice"><%= notice %> </p>
+      <% end %>
       <%= yield %>
     </div>
   </div>
