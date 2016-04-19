@@ -55,6 +55,9 @@ GEM
     jquery-ui-rails (4.1.2)
       railties (>= 3.1.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.6.0)
@@ -168,6 +171,7 @@ DEPENDENCIES
   jquery-rails
   jquery-rest-rails
   jquery-ui-rails
+  kaminari
   less
   less-rails
   less-rails-bootstrap
