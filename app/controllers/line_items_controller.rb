@@ -41,7 +41,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     @cart = current_cart
-    product = Product.find(params[:products_id])
+    product = Product.find(params[:product_id])
     @line_item = @cart.line_items.build(product: product)
 
     respond_to do |format|
