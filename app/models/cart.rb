@@ -20,4 +20,5 @@ class Cart < ActiveRecord::Base
     # line_items.to_a.each { |line_item| counter += line_item.total_price }
     # counter
   end
+
 end

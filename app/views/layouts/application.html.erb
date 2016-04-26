@@ -30,7 +30,10 @@
   </div>
   <footer>
     <div>
-      <p>Ваше количество посещений: <%= user_visit_counter %></p>
+      <% counter = user_visit_counter %>
+      <% if counter > 5 %>
+        <p>Ваше количество посещений: <%= counter %></p>
+      <% end %>
     </div>
   </footer>
 </body>
