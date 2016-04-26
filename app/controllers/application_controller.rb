@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :user_visit_counter
+  helper_method :reset_user_visit_counter
+
   private
 
   def current_cart
@@ -10,4 +13,14 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
+
+  def user_visit_counter
+    session[:counter] = 0 unless session[:counter]
+    session[:counter] += 1
+  end
+
+  def reset_user_visit_counter
+    session[:counter] = 0
+  end
+
 end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
@@ -19,6 +20,11 @@ class CartsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @cart }
     end
+  rescue ActiveRecord::RecordNotFound #Якщо отримуємо код помилки ActiveRecord::RecordNotFound, це означає, що такого id не існує.
+    logger.error "Попытка доступа к несуществующей корзине #{params[:id]}" # Виводимо дані в консоль, щоб потім можна було побачити помилку в лозі
+    redirect_to store_url, notice: "Корзина не найдена" #перенаправляємо на контроллер store
+  rescue => e #Якщо отримуємо будь-який інший код помилки (працює як if then else)
+    redirect_to store_url, notice: e.message
   end
 
   # GET /carts/new
@@ -72,12 +78,13 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart = Cart.find(params[:id])
+    @cart = current_cart
     @cart.destroy
+    session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to carts_url }
-      format.json { head :no_content }
+      format.html { redirect_to store_url, notice: 'Теперь Ваша корзина пуста' }
+      format.json { head :ok }
     end
   end
 end

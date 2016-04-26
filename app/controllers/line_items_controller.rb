@@ -42,11 +42,11 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.line_items.build(product: product)
-
+    @line_item = @cart.add_product(product_id: product.id) #product_id - це запис в моделі line_items, який відповідає конкретному id в таблиці product. За допомогою команди build ми створюємо звязок між моделями по одному id.
+    reset_user_visit_counter
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.cart }
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
         format.html { render action: "new" }
