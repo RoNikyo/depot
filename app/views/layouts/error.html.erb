@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pragprog Books Online Store</title>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="<%= controller.controller_name %>">
+    <div id="banner">
+      <%= image_tag("logo.png") %>
+      <%= @page_title || "Pragmatic Bookshelf" %>
+    </div>
+    <div id="columns">
+      <div id="side">
+        <ul>
+          <li><%= link_to 'home', root_path %></li>
+          <li><%= link_to 'products', products_path %></li>
+          <li><a href="http://www..../news">News</a></li>
+          <li><a href="http://www..../contact">Contact</a></li>
+        </ul>
+        <p><font color=#FFF><%= Time.now.strftime("%d-%m-%Y") %></font></p>
+      </div>
+      <div id="main">
+        <% if notice %>
+          <p id="notice"><%= notice %> </p>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div>
+        <% counter = user_visit_counter %>
+        <% if counter > 5 %>
+          <p>Ваше количество посещений: <%= counter %></p>
+        <% end %>
+      </div>
+    </footer>
+  </body>
+</html>

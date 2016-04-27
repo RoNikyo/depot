@@ -14,12 +14,12 @@
   <div id="columns">
     <div id="side">
       <ul>
-        <li><%= link_to 'home', store_path %></li>
+        <li><%= link_to 'home', root_path %></li>
         <li><%= link_to 'products', products_path %></li>
         <li><a href="http://www..../news">News</a></li>
         <li><a href="http://www..../contact">Contact</a></li>
       </ul>
-      <p><font color=#FFF><%= Time.now.day.to_s+"."+Time.now.month.to_s+"."+Time.now.year.to_s %></font></p>
+      <p><font color=#FFF><%= Time.now.strftime("%d-%m-%Y") %></font></p>
     </div>
     <div id="main">
       <% if notice %>

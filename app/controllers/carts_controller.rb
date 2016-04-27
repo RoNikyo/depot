@@ -20,9 +20,6 @@ class CartsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @cart }
     end
-  rescue ActiveRecord::RecordNotFound #Якщо отримуємо код помилки ActiveRecord::RecordNotFound, це означає, що такого id не існує.
-    logger.error "Попытка доступа к несуществующей корзине #{params[:id]}" # Виводимо дані в консоль, щоб потім можна було побачити помилку в лозі
-    redirect_to store_url, notice: "Корзина не найдена" #перенаправляємо на контроллер store
   rescue => e #Якщо отримуємо будь-який інший код помилки (працює як if then else)
     redirect_to store_url, notice: e.message
   end
