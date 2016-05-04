@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :user_visit_counter
   helper_method :reset_user_visit_counter
+  helper_method :current_cart
 
   private
 

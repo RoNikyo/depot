@@ -19,7 +19,7 @@
       <ul>
         <li><%= link_to 'home', store_path %></li>
         <li><%= link_to 'products', products_path %></li>
-        <li><a href="http://www..../news">News</a></li>
+        <li><%= link_to 'current_cart', cart_path(current_cart) %></li>
         <li><a href="http://www..../contact">Contact</a></li>
       </ul>
       <p><font color=#FFF><%= Time.now.strftime("%d-%m-%Y") %></font></p>
