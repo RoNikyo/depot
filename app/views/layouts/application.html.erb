@@ -14,7 +14,9 @@
   <div id="columns">
     <div id="side">
       <div id="cart">
+      <% if current_cart.line_items.present? %>
         <%= render 'carts/cart', cart: current_cart %>
+      <% end %>
       </div>
       <ul>
         <li><%= link_to 'home', store_index_path %></li>
