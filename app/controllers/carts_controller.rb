@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class CartsController < ApplicationController
+
+  before_filter :find_cart, only: [:show, :update, :edit]
   # GET /carts
   # GET /carts.json
   def index
@@ -14,14 +16,12 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = Cart.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cart }
     end
   rescue => e #Якщо отримуємо будь-який інший код помилки (працює як if then else)
-    redirect_to store_url, notice: e.message
+    redirect_to store_index_path, notice: e.message
   end
 
   # GET /carts/new
@@ -36,9 +36,7 @@ class CartsController < ApplicationController
   end
 
   # GET /carts/1/edit
-  def edit
-    @cart = Cart.find(params[:id])
-  end
+  def edit; end
 
   # POST /carts
   # POST /carts.json
@@ -59,8 +57,6 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    @cart = Cart.find(params[:id])
-
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
@@ -80,8 +76,14 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to store_url, notice: 'Теперь Ваша корзина пуста' }
+      format.html { redirect_to store_index_path, notice: 'Теперь Ваша корзина пуста' }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def find_cart
+    @cart = Cart.find(params[:id])
   end
 end

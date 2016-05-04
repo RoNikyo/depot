@@ -46,7 +46,7 @@ class LineItemsController < ApplicationController
     reset_user_visit_counter
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to store_url }
+        format.html { redirect_to store_index_path }
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
         format.html { render action: "new" }
