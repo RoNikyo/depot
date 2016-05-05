@@ -1,3 +1,4 @@
+# ApplicationController
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -23,5 +24,4 @@ class ApplicationController < ActionController::Base
   def reset_user_visit_counter
     session[:counter] = 0
   end
-
 end

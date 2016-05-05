@@ -1,3 +1,4 @@
+# LineItemsController
 class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
@@ -42,15 +43,19 @@ class LineItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product_id: product.id) #product_id - це запис в моделі line_items, який відповідає конкретному id в таблиці product. За допомогою команди build ми створюємо звязок між моделями по одному id.
+    @line_item = @cart.add_product(product_id: product.id)
     reset_user_visit_counter
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_index_path }
-        format.json { render json: @line_item, status: :created, location: @line_item }
+        format.json do
+          render json: @line_item, status: :created, location: @line_item
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json do
+          render json: @line_item.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -62,11 +67,15 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.update_attributes(params[:line_item])
-        format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
+        format.html do
+          redirect_to @line_item, notice: 'Line item was successfully updated.'
+        end
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json do
+          render json: @line_item.errors, status: :unprocessable_entity
+        end
       end
     end
   end

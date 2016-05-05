@@ -1,0 +1,5 @@
+# Common configuration.
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'

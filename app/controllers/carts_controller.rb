@@ -1,6 +1,7 @@
 # encoding: UTF-8
-class CartsController < ApplicationController
 
+# CartsController
+class CartsController < ApplicationController
   before_filter :find_cart, only: [:show, :update, :edit]
   # GET /carts
   # GET /carts.json
@@ -20,7 +21,7 @@ class CartsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @cart }
     end
-  rescue => e #Якщо отримуємо будь-який інший код помилки (працює як if then else)
+  rescue => e
     redirect_to store_index_path, notice: e.message
   end
 
@@ -45,10 +46,12 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html do
+          redirect_to @cart, notice: 'Cart was successfully created.'
+        end
         format.json { render json: @cart, status: :created, location: @cart }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
@@ -59,10 +62,12 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html do
+          redirect_to @cart, notice: 'Cart was successfully updated.'
+        end
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +81,9 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to store_index_path, notice: 'Теперь Ваша корзина пуста' }
+      format.html do
+        redirect_to store_index_path, notice: 'Теперь Ваша корзина пуста'
+      end
       format.json { head :ok }
     end
   end
