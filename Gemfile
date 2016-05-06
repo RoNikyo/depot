@@ -20,10 +20,11 @@ end
 group :development do
   gem 'quiet_assets'
   gem 'pry'
+  gem 'rubocop', require: false
 end
 
 group :test do
-  gem 'turn', :require => false
+  gem 'turn', require: false
   gem 'rspec'
   gem 'rspec-rails'
 end

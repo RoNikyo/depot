@@ -1,11 +1,11 @@
+# ProductsController
 class ProductsController < ApplicationController
-
   before_filter :find_product, except: [:index, :new, :create]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order("title").page(params[:page]).per(4)
+    @products = Product.order('title').page(params[:page]).per(4)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,11 +42,17 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
+        format.html do
+          redirect_to @product, notice: 'Product was successfully created.'
+        end
+        format.json do
+          render json: @product, status: :created, location: @product
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json do
+          render json: @product.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -56,11 +62,15 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html do
+          redirect_to @product, notice: 'Product was successfully updated.'
+        end
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json do
+          render json: @product.errors, status: :unprocessable_entity
+        end
       end
     end
   end

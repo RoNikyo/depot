@@ -1,3 +1,4 @@
+# model Cart
 class Cart < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
 
@@ -13,12 +14,5 @@ class Cart < ActiveRecord::Base
 
   def total_price
     line_items.sum(&:total_price)
-
-    # line_items.to_a.sum { |line_item| line_item.total_price }
-
-    # counter = 0
-    # line_items.to_a.each { |line_item| counter += line_item.total_price }
-    # counter
   end
-
 end
