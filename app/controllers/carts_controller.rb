@@ -82,7 +82,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to store_index_path, notice: 'Теперь Ваша корзина пуста'
+        redirect_to store_index_path
       end
       format.json { head :ok }
     end
